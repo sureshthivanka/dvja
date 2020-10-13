@@ -21,8 +21,10 @@ jobs:
       with:
         image: "localbuild/testimage:latest"
         fail-build: false
+    - name: grype scan JSON results
+      run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done:  
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: anchore-reports
-        path: ./anchore-reports/
+        name: vulnerabilities
+        path: ./anchore-reports/*.json
