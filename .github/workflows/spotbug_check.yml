@@ -30,3 +30,8 @@ jobs:
     - uses: jwgmeligmeyling/spotbugs-github-action@master
       with:
         path: '**/spotbugsXml.xml'
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: spotbugsXml
+        path: '**/spotbugsXml.xml'
