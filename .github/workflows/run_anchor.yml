@@ -21,7 +21,9 @@ jobs:
       with:
         image: "localbuild/testimage:latest"
         fail-build: false
-    - uses: actions/upload-artifact@v2
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
       with:
-        name: vulnerabilities
-        path: ./anchore-reports/*.json
+        name: AnchoreReports
+        path: ./anchore-reports/
+
