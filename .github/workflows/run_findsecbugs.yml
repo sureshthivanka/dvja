@@ -25,12 +25,12 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Post Build cleanup and scan prep
       run: |
-        cp ./target/JavaVulnerableLab.war ./
+        cp ./target/dvja.war ./
         rm -rf target
     - name: Run findSecBugs scan
       run: |
         chmod +x ./findsecbugs-cli-1.10.1/findsecbugs.sh
-        ./findsecbugs-cli-1.10.1/findsecbugs.sh -progress -html -output report.htm ./JavaVulnerableLab.war
+        ./findsecbugs-cli-1.10.1/findsecbugs.sh -progress -html -output report.htm ./dvja.war
     - name: Retrieve version
       run: |
         VERSION=$(git rev-parse --short "$GITHUB_SHA")
