@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Run Anchor
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the container image
+      run: docker build . --file Dockerfile --tag localbuild/testimage:latest
+    - uses: anchore/scan-action@master
+      with:
+        image: "localbuild/testimage:latest"
+        dockerfile-path: "Dockerfile"
+        fail-build: false
+    - uses: actions/upload-artifact@v2
+      with:
+        name: anchore-reports
+        path: ./anchore-reports
