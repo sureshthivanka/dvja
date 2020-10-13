@@ -20,7 +20,6 @@ jobs:
     - uses: anchore/scan-action@v2
       with:
         image: "localbuild/testimage:latest"
-        dockerfile-path: "Dockerfile"
         fail-build: false
     - uses: actions/upload-artifact@v2
       with:
