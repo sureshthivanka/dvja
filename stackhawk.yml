@@ -1,0 +1,4 @@
+app:
+  applicationId: cb2f240c-d4fd-4ce9-8761-f8929a5b178d
+  host: https://owasp-juice-shop-009.herokuapp.com/
+  env: Development
