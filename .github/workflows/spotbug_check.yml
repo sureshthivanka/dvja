@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Run SpotBugs
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build with Maven
+      run: mvn clean install -DskipTests com.github.spotbugs:spotbugs-maven-plugin:3.1.12:spotbugs
+    - uses: jwgmeligmeyling/spotbugs-github-action@master
+      with:
+        path: '**/spotbugsXml.xml'
