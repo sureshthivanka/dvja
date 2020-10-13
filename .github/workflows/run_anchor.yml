@@ -24,4 +24,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: anchore-reports
-        path: ./anchore-reports
+        path: ./anchore-reports/*.json
