@@ -25,4 +25,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           target: 'http://18.224.170.245/'
-          cmd_options: '-x'
+          cmd_options: '-x report_xml'
